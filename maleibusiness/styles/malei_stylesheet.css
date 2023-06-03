@@ -1,0 +1,58 @@
+a:hover {
+  background-color: white;
+  color: steelblue;
+}
+#hero-msg{
+  background-color: bisque;
+}
+.maleilogo{
+  max-width: 150px;
+  display: block;
+  border-radius: 50%;
+  
+}
+.businesstitle{
+  text-align: center;
+}
+header{
+  background-color: purple;
+  color: white;
+  padding: 1em;
+  margin: auto;
+  border: solid;border-color:white; 
+}
+nav{
+  /*background-color: rgb(6, 1, 10);*/
+  padding: 1em;
+  text-align: center;
+  font-size: 1.3em;
+  font-family: Georgia, 'Times New Roman', Times, serif; /* worked */
+}
+nav a{
+  color: white;
+  padding: 0.5em;
+  border: solid;
+ 
+}
+body{
+  display: grid;
+  background-color: grey;
+  padding: 2em;
+  margin: auto;
+  border: solid;border-color:white; 
+}
+main{
+  background-color: paleturquoise;
+  padding: 2em;
+  margin: auto;
+  border: solid;border-color:white; 
+}
+
+footer{
+  background-color: black;
+  padding: 2em;
+  margin: auto;
+  border: solid;border-color:white; 
+  color: white;
+  text-align: center;
+}
