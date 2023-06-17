@@ -1,0 +1,43 @@
+header{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    width: 100%;
+    background-color: #a00df4;
+
+}
+.maleilogo {
+    grid-columns: 1/2;
+    grid-rows: 1/2;
+    width: 50%;
+    justify-self: center;
+    align-self: center;
+
+}
+
+.businesstitle{
+    grid-columns: 2/3;
+    grid-rows: 1/2;
+    width: 100%;
+    font-size: 1em;
+    color: white;
+    justify-self: center;
+    align-self: center;
+}
+nav{
+    grid-columns: 2/3;
+    grid-rows: 1/2;
+}
+nav a{
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    padding: 35px;
+
+    justify-self: center;
+    align-self: center;
+}
+
+footer{
+background-color: #101010;
+color: #ffffff;
+}

@@ -1,43 +1,253 @@
-header{
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    width: 100%;
-    background-color: #a00df4;
+.home-title{
+    font-size: 2em;
+    margin-top: 10px;
+
+} 
+.logo {
+    width: 80px;
+}
+.icon{
+    padding-top: 10px;
+}
+.card-img{
+    border: 10px solid black;
+    transition: transform .5s;
+    box-shadow: 5px 5px 10px white;
 
 }
-.maleilogo {
-    grid-columns: 1/2;
-    grid-rows: 1/2;
-    width: 50%;
-    justify-self: center;
-    align-self: center;
-
+.card-img:hover {
+    opacity: .6;
+    transform: scale(1.1);
 }
-
-.businesstitle{
-    grid-columns: 2/3;
-    grid-rows: 1/2;
+.card-img, .mountains{
     width: 100%;
-    font-size: 1em;
+}
+.home-title{
     color: white;
+    border: solid;
+    border-radius: 50%;
+    border-color: pink;
+    font-size: 3em;
+}
+.online{
+    width: 100%;
+    grid-column: 2/7; 
+    grid-row: 5/8;
+    box-shadow: 5px 5px 10px #6f7364;
+}
+main section img {
+    box-sizing: border-box;
+}
+.maleiservices{
+    grid-column: 2/4; 
+    grid-row: 2/3;
+}
+.passport{
+    grid-column: 5/7; 
+    grid-row: 2/3;
+}
+.colognes{
+    grid-column: 8/10; 
+    grid-row: 2/3;
+}
+.maleiservices, .colognes, .passport{ 
+    margin: 200px 0;
+    
+}
+#logo_link {
+    padding-top: 5px;
     justify-self: center;
     align-self: center;
 }
-nav{
-    grid-columns: 2/3;
-    grid-rows: 1/2;
+#content{
+    max-width: 1600px;
+    margin: 0 auto;
 }
+nav {
+    display: flex;
+    justify-content: space-around;
+    
+}
+
 nav a{
     text-align: center;
     color: white;
     text-decoration: none;
     padding: 35px;
-
-    justify-self: center;
-    align-self: center;
 }
 
+#hero {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    margin-top: -100px; 
+}
+#hero-box {
+    grid-column: 1/4;
+    grid-row: 1/3;
+    z-index: -1;
+}
+#hero-img{
+    width: 100%;
+    
+}
+#hero-msg{
+    grid-column: 2/3;
+    grid-row: 1/2;
+    margin-top: 100px;
+    
+}
+#hero-msg h1{
+    text-align: center;
+   
+} 
+#hero-msg h4{
+    text-align: center;
+    color: white;
+}
+.button-box{
+    text-align: center;
+}
+.home-grid{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); 
+}
+main section{
+    text-align: center;
+}
+#background{
+    height: 725px;
+}
+body{
+    background-color:white;
+    color: black;
+    font-family: Georgia, serif;
+    margin: 0;
+    padding: 0;
+    
+}
+h1{
+    font-family: 'Rock Salt', 'Bradley Hand', sans-serif;
+}
+h2{
+    margin: 0;
+}
+header{
+    background-color: black;
+    color: blue;
+    display: grid; 
+    grid-template-columns: 150px auto;
+    
+}
+nav a:hover{
+    background-color:white;
+    color: black;
+}
+.book, .join{
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 15px 30px;
+    margin-top: 50px;
+    border-radius: 5px;
+}
+.book:hover, .join:hover{
+    background-color: rgb(255, 247, 0);
+    color: black;
+}
+#background{
+    background-color: #259faf;
+    grid-column: 1/11; 
+    grid-row: 4/9;
+}
+.msg{
+    background-color: white;
+    line-height: 1.5em;
+    padding: 35px;
+    grid-column: 6/10; 
+    grid-row: 6/7;
+    box-shadow: 5px 5px 10px #6f7364;
+}
+.msg h2{
+    color: #a00df4;
+    font-family: "Times New Roman", Times, serif;
+}
+.msg p{
+    color: black;
+    font-size: .8em;
+    padding-bottom: 15px;
+}
+
+h4{
+    color: red;
+}
 footer{
-background-color: #101010;
-color: #ffffff;
+    background-color: black;
+    color: white;
+    padding: 25px 50px;
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+footer a{
+    color: white;
+    text-decoration: none;
+}
+footer a:hover{
+    background-color: blue;
+    color: black;
+}
+footer p{
+    font-size: 1.2em;
+}
+footer p a:hover {
+    text-decoration: underline;
+}    
+footer .social img {
+    padding-top: 15px;
+}   
+
+
+
+@media screen and (max-width: 900px) {
+    #hero, .home-grid {
+        display: block;
+        height: auto;
+    }
+    nav, footer {
+        flex-direction: column;
+    }
+    nav a {
+        display: block;
+        padding: 15px;
+    }
+    #hero {
+        margin-top: 0;
+    }
+    #hero-msg {
+        margin-top: 0;
+    }
+    #hero-msg h4 {
+        display: none;
+    }
+    .home-title {
+        font-size: 25px;
+        color: #6f7364;
+    }
+    .rivers-card, .camping-card, .rapids-card { 
+        margin: 50px auto;
+        width: 60%;
+    }
+    #background {
+        display: none;
+    }
+    .mountains, .msg {
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+    }
+    footer {
+        margin-top: 25px;
+    }
 }
