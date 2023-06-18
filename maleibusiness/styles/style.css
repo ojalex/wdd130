@@ -120,13 +120,13 @@ main section{
 body{
     background-color:white;
     color: black;
-    font-family: Georgia, serif;
+    font-family: serif, Georgia;
     margin: 0;
     padding: 0;
     
 }
 h1{
-    font-family: 'Rock Salt', 'Bradley Hand', sans-serif;
+    font-family: 'Times New Roman';
 }
 h2{
     margin: 0;
