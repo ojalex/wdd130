@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)https://byui-cse.github.io/cse111-course/lesson10/prepare.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 Prepare: Handling Exceptions</title>
+    <script defer="" src="./10 Prepare_ Handling Exceptions_files/main.js.download"></script>
+    <script defer="" src="./10 Prepare_ Handling Exceptions_files/highlight.min.js.download"></script>
+    <link rel="stylesheet" href="./10 Prepare_ Handling Exceptions_files/css2">
+    <link rel="stylesheet" href="./10 Prepare_ Handling Exceptions_files/reset.css">
+    <link rel="stylesheet" href="./10 Prepare_ Handling Exceptions_files/style.css">
+    <link rel="stylesheet" href="./10 Prepare_ Handling Exceptions_files/vscode.css">
+    <link rel="icon" type="image/png" href="https://byui-cse.github.io/cse111-course/site/icons/logo.png">
+    <link rel="canonical" href="https://byui-cse.github.io/cse111-course/lesson10/prepare.html">
+    <link rel="prev" type="text/html" href="https://byui-cse.github.io/cse111-course/lesson09/prove.html">
+    <link rel="next" type="text/html" href="https://byui-cse.github.io/cse111-course/lesson10/check.html">
+    <meta name="description" content="Explains and shows how to handle exceptions in a Python program and shows how seven common exceptions may occur">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "Article",
+        "headline": "10 Prepare: Handling Exceptions",
+        "description": "Explains and shows how to handle exceptions in a Python program and shows how seven common exceptions may occur",
+        "educationalUse": "instruction",
+        "copyrightNotice": "Copyright © 2020, Brigham Young University–Idaho. All rights reserved.",
+        "datePublished": "2020-04-04",
+        "dateModified": "2023-02-20"
+    }
+    </script>
+</head>
+
+<body class="light">
+<header><a class="byuiLogo" title="BYU-Idaho Website" href="https://www.byui.edu/"><svg viewBox="0 0 88.48 52.39"><title>BYU-Idaho Logo</title><use href="#svgBYUILogo"></use></svg></a><h2><a title="CSE 111 Content" href="https://byui-cse.github.io/cse111-course/index.html">CSE 111 | Programming with Functions</a></h2><svg viewBox="0 0 56 64" class="menuIcon" id="menuOpen"><title>Click to open the navigation menu</title><use href="#svgBars"></use></svg><svg viewBox="0 0 56 64" class="menuIcon closed" id="menuClose"><title>Click to close the navigation menu</title><use href="#svgClose"></use></svg></header><nav class="menu closed"><ul><li class="light" title="Change to light mode"><svg viewBox="0 0 64 64"><title>Change to light mode</title><use href="#svgSun"></use></svg> Light Mode</li><li class="dark" title="Change to dark mode"><svg viewBox="0 0 64 64"><title>Change to dark mode</title><use href="#svgMoon"></use></svg> Dark Mode</li><li class="first" title="View list of contents for CSE 111"><a href="https://byui-cse.github.io/cse111-course/index.html"><svg viewBox="0 0 64 64"><title>View list of contents for CSE 111</title><use href="#svgList"></use></svg> Contents</a></li><li title="View previous document"><a href="https://byui-cse.github.io/cse111-course/lesson09/prove.html"><svg viewBox="0 0 64 64"><title>View previous document</title><use href="#svgLeft"></use></svg> Previous Document</a></li><li title="View next document"><a href="https://byui-cse.github.io/cse111-course/lesson10/check.html"><svg viewBox="0 0 64 64"><title>View next document</title><use href="#svgRight"></use></svg> Next Document</a></li><li class="first" title="Search the CSE 111 content"><a href="https://byui-cse.github.io/cse111-course/index.html#search"><svg viewBox="0 0 64 64"><title>Search the CSE 111 content</title><use href="#svgMagnify"></use></svg> Search</a></li><li title="Get help for CSE 111"><a href="https://byui-cse.github.io/cse111-course/overview/help.html"><svg viewBox="0 0 64 64"><title>Get help for CSE 111</title><use href="#svgQuestion"></use></svg> Help</a></li><li class="first" title="Download a PDF that contains all
+CSE 111 HTML preparation content"><a download="" href="https://byui-cse.github.io/cse111-course/combined/cse111_prepare_content.pdf"><svg viewBox="0 0 384 512"><title>Download a PDF that contains all
+CSE 111 HTML preparation content</title><use href="#svgFilePDF"></use></svg> .pdf File</a></li><li title="Download a zip file that
+contains all CSE 111 content"><a download="" href="https://byui-cse.github.io/cse111-course/combined/cse111_content.zip"><svg viewBox="0 0 384 512"><title>Download a zip file that
+contains all CSE 111 content</title><use href="#svgFileZip"></use></svg> .zip File</a></li></ul></nav><article>
+    <h1>10 Prepare: Handling Exceptions</h1>
+    <p>Errors and exceptional situations sometimes occur while a program
+    is running. Such errors include a program attempting to read from a
+    file that doesn’t exist, a connection error when connecting to a
+    server on a network, data that cannot be found on a server, and
+    calculations that produce undefined results. A well written program
+    doesn’t crash when an error occurs but instead handles errors in a
+    graceful manner that may include adjusting to an error, printing an
+    error message for the user to see, and saving an error message to a
+    log file. During this lesson, you will learn to write code that
+    handles errors that may occur while your Python program is
+    running.</p>
+
+    <h2 id="videos">Videos<span class="copy" title="Copy URL to the clipboard">§</span></h2>
+    <p>Watch these two videos from Microsoft about error handling.</p>
+
+    <ul class="videos long">
+        <li><div>
+        <a href="https://channel9.msdn.com/Series/Intro-to-Python-Development/Python-for-Beginners-17-of-44-Error-Handling">Error Handling Concepts</a>
+        <span class="duration">(13 minutes)</span>
+        <div class="video"><iframe allowfullscreen="" title="Python for Beginners [17 of 44] Error Handling - Microsoft Channel 9 Video" src="./10 Prepare_ Handling Exceptions_files/player.html"></iframe></div>
+        </div></li>
+
+        <li><div>
+        <a href="https://channel9.msdn.com/Series/Intro-to-Python-Development/Python-for-Beginners-18-of-44-Demo-Error-Handling">Error Handling Demonstration</a>
+        <span class="duration">(4 minutes)</span>
+        <div class="video"><iframe loading="lazy" allowfullscreen="" title="Python for Beginners [18 of 44] Demo: Error Handling - Microsoft Channel 9 Video" src="./10 Prepare_ Handling Exceptions_files/player(1).html"></iframe></div>
+        </div></li>
+    </ul>
+
+    <h2 id="concepts">Concepts<span class="copy" title="Copy URL to the clipboard">§</span></h2>
+    <p>Here are the Python programming concepts and topics that you
+    should learn during this lesson.</p>
+
+    <h3 id="exception">What Is an Exception?<span class="copy" title="Copy URL to the clipboard">§</span></h3>
+    <p>An <dfn>exception</dfn> is a relatively rare event that sometimes
+    occurs while a program is running. For example, an exception occurs
+    when a Python program tries to open a file for reading but that file
+    doesn’t exist. There are many different
+    <a href="https://docs.python.org/3/library/exceptions.html">built-in
+    exceptions</a> that may occur while a Python program is running.</p>
+
+    <p>When an exceptional event occurs, a Python function
+    <dfn>raises</dfn> an exception which may be handled by code at
+    another location in the executing Python program. The Python keyword
+    to raise an exception is <code>raise</code>. Normally, you will not
+    need to write code to raise an exception because the built-in
+    functions, such as <code>open</code>, <code>int</code>, and
+    <code>float</code>, will raise an exception when necessary. You will
+    need to write code in your programs to handle exceptions.</p>
+
+    <h3 id="handle_except">How to Handle an Exception<span class="copy" title="Copy URL to the clipboard">§</span></h3>
+    <p>The Python keywords to handle exceptions are <code>try</code>,
+    <code>except</code>, <code>else</code>, and <code>finally</code>.
+    The following example code contains the outline of a complete
+    try-except-else-finally block. Read the code and its comments
+    carefully to understand the correct syntax and organization of a
+    try-except-else-finally block.</p>
+
+<div class="example" id="ex1"><pre class="linenums"><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span></pre>
+<div class="code"><pre class="python hljs"><span class="hljs-comment"># Example 1</span>
+
+<em><span class="hljs-keyword">try</span></em>:
+    <span class="hljs-comment"># Write normal code here. This block must include</span>
+    <span class="hljs-comment"># code that falls into two groups:</span>
+    <span class="hljs-comment"># 1. Code that may cause an exception to be raised</span>
+    <span class="hljs-comment"># 2. Code that depends on the results of the code</span>
+    <span class="hljs-comment">#    in the first group</span>
+<em><span class="hljs-keyword">except</span> ZeroDivisionError <span class="hljs-keyword">as</span> zero_div_err:</em>
+    <span class="hljs-comment"># Code that the computer executes if the code in the try</span>
+    <span class="hljs-comment"># block caused a function to raise a ZeroDivisionError.</span>
+<em><span class="hljs-keyword">except</span> ValueError <span class="hljs-keyword">as</span> val_err:</em>
+    <span class="hljs-comment"># Code that the computer executes if the code in the</span>
+    <span class="hljs-comment"># try block caused a function to raise a ValueError.</span>
+<em><span class="hljs-keyword">except</span> (TypeError, KeyError, IndexError) <span class="hljs-keyword">as</span> error:</em>
+    <span class="hljs-comment"># Code that the computer executes if the code in the</span>
+    <span class="hljs-comment"># try block caused a function to raise a TypeError,</span>
+    <span class="hljs-comment"># KeyError, or IndexError.</span>
+<em><span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> excep:</em>
+    <span class="hljs-comment"># Code that the computer executes if the code in the try</span>
+    <span class="hljs-comment"># block caused a function to raise any exception that</span>
+    <span class="hljs-comment"># was not handled by one of the previous except blocks.</span>
+<em><span class="hljs-keyword">except</span>:</em>
+    <span class="hljs-comment"># Code that the computer executes if the code in the</span>
+    <span class="hljs-comment"># try block caused a function to raise anything that</span>
+    <span class="hljs-comment"># was not handled by one of the previous except blocks.</span>
+<em><span class="hljs-keyword">else</span>:</em>
+    <span class="hljs-comment"># Code that the computer executes after the code</span>
+    <span class="hljs-comment"># in the try block if the code in the try block</span>
+    <span class="hljs-comment"># did not cause any function to raise an exception.</span>
+<em><span class="hljs-keyword">finally</span>:</em>
+    <span class="hljs-comment"># Code that the computer executes after all the other</span>
+    <span class="hljs-comment"># code in try, except, and else blocks regardless of</span>
+    <span class="hljs-comment"># whether an exception was raised or not.</span></pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div>
+</div>
+
+    <p>As shown in example&nbsp;1 above, when we want to write code that
+    will handle exceptions, we first write a <code>try</code> block, and
+    we put into that <code>try</code> block the normal code that might
+    cause an exception. Then we write <code>except</code> blocks to
+    handle the exceptions. Each <code>except</code> block may handle one
+    type of exception like the code at
+    <span class="cross" data-ref="ex1" title="Move mouse over to turn on highlights.
+Click to keep highlights on.">line&nbsp;9</span>:</p>
+<div class="example"><div class="code"><pre class="python hljs"><span class="hljs-keyword">except</span> ZeroDivisionError <span class="hljs-keyword">as</span> zero_div_err:
+</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div></div>
+
+    <p>Or each <code>except</code> block may handle several types of
+    exceptions, like the code at
+    <span class="cross" data-ref="ex1" title="Move mouse over to turn on highlights.
+Click to keep highlights on.">line&nbsp;15</span>:</p>
+<div class="example"><div class="code"><pre class="python hljs"><span class="hljs-keyword">except</span> (TypeError, KeyError, IndexError) <span class="hljs-keyword">as</span> error:
+</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div></div>
+
+    <p>Or one <code>except</code> block may handle all possible types of
+    exceptions, like the code at
+    <span class="cross" data-ref="ex1" title="Move mouse over to turn on highlights.
+Click to keep highlights on.">line&nbsp;19</span>:</p>
+<div class="example"><div class="code"><pre class="python hljs"><span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> excep:
+</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div></div>
+
+    <p>Or a bare <code>except</code> block may handle anything that can
+    be raised, including <code>SystemExit</code>,
+    <code>KeyboardInterrupt</code> and <code>GeneratorExit</code>, like
+    the code at
+    <span class="cross" data-ref="ex1" title="Move mouse over to turn on highlights.
+Click to keep highlights on.">line&nbsp;23</span>:</p>
+<div class="example"><div class="code"><pre class="python hljs"><span class="hljs-keyword">except</span>:
+</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div></div>
+
+    <p>The Python programming language requires us to order
+    <code>except</code> blocks from most specific at the top to least
+    specific (most general) at the bottom. However, in most programs, it
+    is a bad idea to write <code>except</code> blocks that are very
+    general, including an <code>except</code> block that handles all
+    possible exception types
+    (<span class="cross" data-ref="ex1" title="Move mouse over to turn on highlights.
+Click to keep highlights on.">line&nbsp;19</span>)
+    and a bare <code>except</code> block
+    (<span class="cross" data-ref="ex1" title="Move mouse over to turn on highlights.
+Click to keep highlights on.">line&nbsp;23</span>).</p>
+
+    <p>In a Python program, it is usually a bad idea to write an
+    <code>except</code> block that handles all types of exceptions or a
+    bare except block because such a block will handle
+    <code>SyntaxError</code>. Normally, a program should not handle
+    <code>SyntaxError</code>. Instead, a program should crash for a
+    syntax error and print the line number where the syntax error
+    occurred so that a programmer can find and fix the syntax error. As
+    explained in the
+    <a href="https://byui-cse.github.io/cse111-course/lesson06/prepare.html#err_types">preparation content for
+    lesson 6</a>, syntax errors are caused by a programmer mistyping
+    code and not by bad user input or missing files. A programmer should
+    find and fix all syntax errors in a program before the program is
+    given to users, so there is no reason to handle syntax errors in an
+    <code>except</code> block.</p>
+
+    <p>As shown at
+    <span class="cross" data-ref="ex1" title="Move mouse over to turn on highlights.
+Click to keep highlights on.">line&nbsp;27</span> in
+    example&nbsp;1 above, following the <code>except</code> blocks, a
+    programmer may write an optional <code>else</code> block which the
+    computer will execute if the <code>try</code> block does not raise
+    any exceptions. However, it is uncommon to write an
+    <code>else</code> block for <code>try</code> and <code>except</code>
+    blocks because any code that could be written in an
+    <code>else</code> block of <code>try</code> and <code>except</code>
+    could also be written at the end of the <code>try</code> block.
+    Professional programmers almost never write an <code>else</code>
+    block for <code>try</code> and <code>except</code> blocks.</p>
+
+    <p>As shown at
+    <span class="cross" data-ref="ex1" title="Move mouse over to turn on highlights.
+Click to keep highlights on.">line&nbsp;31</span> in
+    example&nbsp;1 above, at the end of the exception handling code, a
+    programmer may write an optional <code>finally</code> block. The
+    <code>finally</code> block contains code that the computer executes
+    after all the other code in the <code>try</code>,
+    <code>except</code>, and <code>else</code> blocks regardless of
+    whether an exception was raised or not. The code in the
+    <code>finally</code> block usually contains “clean up” code that
+    frees resources that the code in the <code>try</code> block used.
+    For example, if the code in the <code>try</code> block opens a file,
+    the code in the <code>finally</code> block could close that file. In
+    CSE&nbsp;111, you won’t need to write a <code>finally</code>
+    block.</p>
+
+    <p>To summarize, in CSE 111 you will need to write <code>try</code>
+    and <code>except</code> blocks to handle exceptions. You will not
+    need to write bare <code>except</code> blocks, <code>else</code>
+    blocks, or <code>finally</code> blocks to handle exceptions.</p>
+
+    <h2 id="except_types">Common Exception Types<span class="copy" title="Copy URL to the clipboard">§</span></h2>
+    <p>There are many different types of
+    <a href="https://docs.python.org/3/library/exceptions.html">built-in
+    exceptions</a> that may occur while a Python program is running.
+    This section shows how seven types of exceptions may occur.</p>
+
+    <h3 id="type_err">TypeError<span class="copy" title="Copy URL to the clipboard">§</span></h3>
+    <p>The computer raises a <a href="https://docs.python.org/3/library/exceptions.html#TypeError"><code>TypeError</code></a>
+    when the code that calls a function passes an argument with the
+    wrong data type. The code in example&nbsp;2 attempts to pass a
+    string to the <code>round</code> function. This causes the computer
+    to raise a <code>TypeError</code> because the <code>round</code>
+    function cannot round a string to an integer. It can round only a
+    number to an integer. The output below example&nbsp;2 shows that the
+    computer raised a <code>TypeError</code>.</p>
+
+<div class="example" id="ex2">
+<div class="code"><pre class="python hljs"><span class="hljs-comment"># Example 2</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-keyword">try</span>:
+        text = <span class="hljs-built_in">input</span>(<span class="hljs-string">"Please enter a number: "</span>)
+        integer = <span class="hljs-built_in">round</span>(text)
+        <span class="hljs-built_in">print</span>(integer)
+
+    <span class="hljs-keyword">except</span> TypeError <span class="hljs-keyword">as</span> type_err:
+        <span class="hljs-built_in">print</span>(type_err)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div>
+
+<pre class="console" title="Terminal Window">&gt; python type_error.py
+Please enter a number: <span class="input" title="User input">25.7</span>
+type str doesn't define __round__ method</pre>
+</div>
+
+    <h3 id="value_err">ValueError<span class="copy" title="Copy URL to the clipboard">§</span></h3>
+    <p>The computer raises a <a href="https://docs.python.org/3/library/exceptions.html#ValueError"><code>ValueError</code></a>
+    when the code that calls a function passes an argument with the
+    correct data type but with an invalid value. A common event that
+    causes the computer to raise a <code>ValueError</code> is when the
+    <code>int</code> function or <code>float</code> function tries to
+    convert a string to a number but the string contains characters that
+    are not digits. The code in example&nbsp;3 and its output show a
+    <code>ValueError</code>.</p>
+
+<div class="example" id="ex3">
+<div class="code"><pre class="python hljs"><span class="hljs-comment"># Example 3</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-keyword">try</span>:
+        number = <span class="hljs-built_in">float</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">"Please enter a number: "</span>))
+        <span class="hljs-built_in">print</span>(number)
+
+    <span class="hljs-keyword">except</span> ValueError <span class="hljs-keyword">as</span> val_err:
+        <span class="hljs-built_in">print</span>(val_err)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div>
+
+<pre class="console" title="Terminal Window">&gt; python value_error.py
+Please enter a number: <span class="input" title="User input">45.7u</span>
+could not convert string to float: '45.7u'</pre>
+</div>
+
+    <h3 id="zero_div_err">ZeroDivisionError<span class="copy" title="Copy URL to the clipboard">§</span></h3>
+    <p>The computer raises a <a href="https://docs.python.org/3/library/exceptions.html#ZeroDivisionError"><code>ZeroDivisionError</code></a>
+    when a program attempts to divide a number by zero (0) as shown in
+    example&nbsp;4 and its output.</p>
+
+<div class="example" id="ex4">
+<div class="code"><pre class="python hljs"><span class="hljs-comment"># Example 4</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-keyword">try</span>:
+        players = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter the number of players: "</span>))
+        teams = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter the number of teams: "</span>))
+
+        players_per_team = players / teams
+
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Each team should have <span class="hljs-subst">{players_per_team}</span> players"</span>)
+
+    <span class="hljs-keyword">except</span> ZeroDivisionError <span class="hljs-keyword">as</span> zero_div_err:
+        <span class="hljs-built_in">print</span>(zero_div_err)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div>
+
+<pre class="console" title="Terminal Window">&gt; python zero_div_error.py
+Enter the number of players: <span class="input" title="User input">20</span>
+Enter the number of teams: <span class="input" title="User input">0</span>
+division by zero</pre>
+</div>
+
+    <h3 id="index_err">IndexError<span class="copy" title="Copy URL to the clipboard">§</span></h3>
+    <p>Recall from <a href="https://byui-cse.github.io/cse111-course/lesson07/prepare.html">lesson&nbsp;7</a>
+    that each element in a list is stored at a unique index and that an
+    index is always an integer. If we write code that tries to use an
+    index that doesn’t exist in a list, when the computer executes that
+    code, the computer will raise an
+    <a href="https://docs.python.org/3/library/exceptions.html#IndexError"><code>IndexError</code></a>.
+    The program in example&nbsp;5 creates a list that contains three
+    surnames. Then the program attempts to change the surname at
+    index&nbsp;3. Of course, the list contains only three elements, and
+    the index of the last element is 2, so the statement fails and
+    causes the computer to raise an <code>IndexError</code>.</p>
+
+<div class="example" id="ex5">
+<div class="code"><pre class="python hljs"><span class="hljs-comment"># Example 5</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-comment"># Create a list that contains three family names.</span>
+        surnames = [<span class="hljs-string">"Smith"</span>, <span class="hljs-string">"Lopez"</span>, <span class="hljs-string">"Marsh"</span>]
+
+        <span class="hljs-comment"># Attempt to change the surname at index 3. Because</span>
+        <span class="hljs-comment"># there are only three names in the surnames list and</span>
+        <span class="hljs-comment"># therefore the last index is 2, this statement will</span>
+        <span class="hljs-comment"># fail and cause the computer to raise an IndexError.</span>
+        surnames[<span class="hljs-number">3</span>] = <span class="hljs-string">"Olsen"</span>
+
+    <span class="hljs-keyword">except</span> IndexError <span class="hljs-keyword">as</span> index_err:
+        <span class="hljs-built_in">print</span>(index_err)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div>
+
+<pre class="console" title="Terminal Window">&gt; python index_error_write.py
+list assignment index out of range</pre>
+</div>
+
+    <p>The program in example&nbsp;6 is similar to example&nbsp;5, and
+    both programs cause the computer to raise an
+    <code>IndexError</code>. The program in example&nbsp;6 creates a
+    list that contains three surnames. Then the program attempts to
+    print the surname at index&nbsp;3. Of course, this statement fails
+    because the list contains only three elements, and the index of the
+    last element is 2.</p>
+
+<div class="example" id="ex6">
+<div class="code"><pre class="python hljs"><span class="hljs-comment"># Example 6</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-comment"># Create a list that contains three family names.</span>
+        surnames = [<span class="hljs-string">"Smith"</span>, <span class="hljs-string">"Lopez"</span>, <span class="hljs-string">"Marsh"</span>]
+
+        <span class="hljs-comment"># Attempt to print the surname at index 3. Because</span>
+        <span class="hljs-comment"># there are only three names in the surnames list and</span>
+        <span class="hljs-comment"># therefore the last index is 2, this statement will</span>
+        <span class="hljs-comment"># fail and cause the computer to raise an IndexError.</span>
+        <span class="hljs-built_in">print</span>(surnames[<span class="hljs-number">3</span>])
+
+    <span class="hljs-keyword">except</span> IndexError <span class="hljs-keyword">as</span> index_err:
+        <span class="hljs-built_in">print</span>(index_err)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div>
+
+<pre class="console" title="Terminal Window">&gt; python index_error_read.py
+list index out of range</pre>
+</div>
+
+    <h3 id="key_err">KeyError<span class="copy" title="Copy URL to the clipboard">§</span></h3>
+    <p>As shown in example&nbsp;7, if we write code that attempts to
+    find a key in a dictionary and that key doesn’t exist in the
+    dictionary, then the computer will raise a
+    <a href="https://docs.python.org/3/library/exceptions.html#KeyError"><code>KeyError</code></a>.
+
+</p><div class="example" id="ex7">
+<div class="code"><pre class="python hljs"><span class="hljs-comment"># Example 7</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-comment"># Create a dictionary with student IDs as</span>
+        <span class="hljs-comment"># the keys and student names as the values.</span>
+        students = {
+            <span class="hljs-string">"42-039-4736"</span>: <span class="hljs-string">"Clint Huish"</span>,
+            <span class="hljs-string">"61-315-0160"</span>: <span class="hljs-string">"Amelia Davis"</span>,
+            <span class="hljs-string">"10-450-1203"</span>: <span class="hljs-string">"Ana Soares"</span>,
+            <span class="hljs-string">"75-421-2310"</span>: <span class="hljs-string">"Abdul Ali"</span>,
+            <span class="hljs-string">"07-103-5621"</span>: <span class="hljs-string">"Amelia Davis"</span>
+        }
+
+        <span class="hljs-comment"># Attempt to find the key "50-420-1021",</span>
+        <span class="hljs-comment"># which is not in the dictionary. This will</span>
+        <span class="hljs-comment"># cause the computer to raise a KeyError.</span>
+        name = students[<span class="hljs-string">"50-420-1021"</span>]
+
+        <span class="hljs-built_in">print</span>(name)
+
+    <span class="hljs-keyword">except</span> KeyError <span class="hljs-keyword">as</span> key_err:
+        <span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(key_err).__name__, key_err)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div>
+
+<pre class="console" title="Terminal Window">&gt; python key_error.py
+KeyError '50-420-1021'</pre>
+</div>
+
+    <p>Of course, it is very unlikely that a programmer would write a
+    program that tries to find a hard-coded key that is not in a
+    dictionary. However, it is common for a user to enter a key that is
+    not in a dictionary. This is why the programs in
+    <a href="https://byui-cse.github.io/cse111-course/lesson08/prepare.html#ex1">examples&nbsp;1</a>
+    <a href="https://byui-cse.github.io/cse111-course/lesson08/prepare.html#ex4">and&nbsp;4</a> in the prepare
+    content for lesson&nbsp;8 include an <code>if</code> statement
+    above the line of code that searches the dictionary, like this:</p>
+
+<div class="example"><div class="code"><pre class="python hljs">    <span class="hljs-comment"># Get a student ID from the user.</span>
+    <span class="hljs-built_in">id</span> = <span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter a student ID: "</span>)
+
+    <span class="hljs-comment"># Check if the student ID is in the dictionary.</span>
+    <em><span class="hljs-keyword">if</span> <span class="hljs-built_in">id</span> <span class="hljs-keyword">in</span> students:</em>
+
+        <span class="hljs-comment"># Find the student ID in the dictionary and</span>
+        <span class="hljs-comment"># retrieve the corresponding student name.</span>
+        name = students[<span class="hljs-built_in">id</span>]
+
+        <span class="hljs-comment"># Print the student's name.</span>
+        <span class="hljs-built_in">print</span>(name)
+
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"No such student"</span>)
+</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div></div>
+
+    <h3 id="file_not_found_err">FileNotFoundError<span class="copy" title="Copy URL to the clipboard">§</span></h3>
+    <p>If we write a call to the <code>open</code> function that
+    attempts to open a file for reading and that file doesn’t exist, the
+    computer will raise a
+    <a href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError"><code>FileNotFoundError</code></a>.
+    Example&nbsp;8 contains code where such an error might occur.</p>
+
+<div class="example" id="ex8">
+<div class="code"><pre class="python hljs"><span class="hljs-comment"># Example 8</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">"products.vcs"</span>, <span class="hljs-string">"rt"</span>) <span class="hljs-keyword">as</span> products_file:
+            <span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> products_file:
+                <span class="hljs-built_in">print</span>(row)
+
+    <span class="hljs-keyword">except</span> FileNotFoundError <span class="hljs-keyword">as</span> not_found_err:
+        <span class="hljs-built_in">print</span>(not_found_err)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div>
+
+<pre class="console" title="Terminal Window">&gt; python file_not_found.py
+[Errno 2] No such file or directory: 'products.vcs'</pre>
+</div>
+
+    <h3 id="perm_err">PermissionError<span class="copy" title="Copy URL to the clipboard">§</span></h3>
+    <p>Nearly all computer operating systems, such as Microsoft Windows,
+    Mac OS X, and Linux, allow multiple people to use a single computer.
+    Because people need to store private data in files on a computer,
+    the operating systems implement file access permission rules. These
+    rules help to prevent unauthorized access to files.</p>
+
+    <p>If we write a call to the <code>open</code> function that
+    attempts to open a file and the person executing our program doesn’t
+    have permission to access the file, the computer will raise a
+    <a href="https://docs.python.org/3/library/exceptions.html#PermissionError"><code>PermissionError</code></a>.
+    Example&nbsp;9 contains code where such an error might occur.</p>
+
+<div class="example" id="ex9">
+<div class="code"><pre class="python hljs"><span class="hljs-comment"># Example 9</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">"contacts.csv"</span>, <span class="hljs-string">"rt"</span>) <span class="hljs-keyword">as</span> contacts_file:
+            <span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> contacts_file:
+                <span class="hljs-built_in">print</span>(row)
+
+    <span class="hljs-keyword">except</span> PermissionError <span class="hljs-keyword">as</span> perm_err:
+        <span class="hljs-built_in">print</span>(perm_err)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div>
+
+<pre class="console" title="Terminal Window">&gt; python permission_error.py
+[Errno 13] Permission denied: 'contacts.csv'</pre>
+</div>
+
+    <h2 id="arith_excepts">Example: Arithmetic<span class="copy" title="Copy URL to the clipboard">§</span></h2>
+    <p>Example&nbsp;10 contains a complete program with
+    <code>except</code> blocks to handle two types of exceptions:
+    <code>ValueError</code> and <code>ZeroDivisionError</code>.</p>
+
+<div class="example" id="ex10">
+<div class="code"><pre class="python hljs"><span class="hljs-comment"># Example 10</span>
+<span class="hljs-string">"""
+The owner of Sam's Sandwich Shop requested this program,
+which computes the number of sandwiches per employee
+that his employees made in his restaurant in one day.
+"""</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <em><span class="hljs-keyword">try</span>:</em>
+        <span class="hljs-comment"># Get the number of sandwiches made today and the</span>
+        <span class="hljs-comment"># number of employees who worked today from the user.</span>
+        sandwiches = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">"Number of sandwiches made today: "</span>))
+        employees = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">"Number of employees who worked today: "</span>))
+
+        <span class="hljs-comment"># Compute the number of sandwiches per employee</span>
+        <span class="hljs-comment"># that were made today in the restaurant.</span>
+        sands_per_emp = sandwiches / employees
+
+        <span class="hljs-comment"># Print the results for the user to see.</span>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"<span class="hljs-subst">{sands_per_emp:<span class="hljs-number">.1</span>f}</span> sandwiches per employee"</span>)
+
+    <em><span class="hljs-keyword">except</span> ValueError <span class="hljs-keyword">as</span> val_err:</em>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Error: <span class="hljs-subst">{val_err}</span>"</span>)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"You entered text that is not an integer. Please"</span>)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"run the program again and enter an integer."</span>)
+
+    <em><span class="hljs-keyword">except</span> ZeroDivisionError <span class="hljs-keyword">as</span> zero_div_err:</em>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Error: <span class="hljs-subst">{zero_div_err}</span>"</span>)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"You entered 0 for the number of employees."</span>)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"Please run the program again and enter an integer"</span>)
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"larger than 0 for the number of employees."</span>)
+
+
+<span class="hljs-comment"># Call main to start this program.</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div>
+
+<pre class="console" title="Terminal Window">&gt; python example_10.py
+Number of sandwiches that were made today: <span class="input" title="User input">35u</span>
+Error: invalid literal for int() with base 10: '35u'
+You entered text that is not an integer. Please
+run the program again and enter an integer.
+
+&gt; python example_10.py
+Number of sandwiches made today: <span class="input" title="User input">350.4</span>
+Error: invalid literal for int() with base 10: '350.4'
+You entered text that is not an integer. Please
+run the program again and enter an integer.
+
+&gt; python example_10.py
+Number of sandwiches that were made today: <span class="input" title="User input">350</span>
+Number of employees who worked today: <span class="input" title="User input">0</span>
+Error: division by zero
+You entered 0 for the number of employees.
+Please run the program again and enter an integer
+larger than 0 for the number of employees.
+
+&gt; python example_10.py
+Number of sandwiches that were made today: <span class="input" title="User input">350</span>
+Number of employees who worked today: <span class="input" title="User input">8</span>
+43.8 sandwiches per employee</pre>
+</div>
+
+    <h2 id="file_excepts">Example: Reading from a File<span class="copy" title="Copy URL to the clipboard">§</span></h2>
+    <p>The program in example&nbsp;11 below handles exceptions that
+    might occur when the program opens and reads from a file. This
+    program contains only one <code>try</code> block, which begins at
+    <span class="cross" data-ref="ex11" title="Move mouse over to turn on highlights.
+Click to keep highlights on.">line&nbsp;12</span> and includes
+    all the regular code in the <code>main</code> function. This one
+    <code>try</code> block has three <code>except</code> blocks at
+    <span class="cross" data-ref="ex11" title="Move mouse over to turn on highlights.
+Click to keep highlights on.">lines&nbsp;49,
+    53,&nbsp;and&nbsp;57</span> that handle
+    <code>FileNotFoundError</code>, <code>PermissionError</code>, and
+    <code>ZeroDivisionError</code>.</p>
+
+<div class="example" id="ex11"><pre class="linenums"><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+<span>46</span>
+<span>47</span>
+<span>48</span>
+<span>49</span>
+<span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+<span>54</span>
+<span>55</span>
+<span>56</span>
+<span>57</span>
+<span>58</span>
+<span>59</span>
+<span>60</span>
+<span>61</span>
+<span>62</span>
+<span>63</span>
+<span>64</span>
+<span>65</span>
+<span>66</span>
+<span>67</span>
+<span>68</span>
+<span>69</span>
+<span>70</span>
+<span>71</span>
+<span>72</span>
+<span>73</span>
+<span>74</span>
+<span>75</span>
+<span>76</span>
+<span>77</span>
+<span>78</span></pre>
+<div class="code"><pre class="python hljs"><span class="hljs-comment"># Example 11</span>
+
+<span class="hljs-keyword">import</span> csv
+
+DATE_INDEX = <span class="hljs-number">0</span>
+START_MILES_INDEX = <span class="hljs-number">1</span>
+END_MILES_INDEX = <span class="hljs-number">2</span>
+GALLONS_INDEX = <span class="hljs-number">3</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    <em><span class="hljs-keyword">try</span>:</em>
+        <span class="hljs-comment"># Open the fuel_usage.csv file.</span>
+        filename = <span class="hljs-string">"fuel_usage.csv"</span>
+        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(filename, <span class="hljs-string">"rt"</span>) <span class="hljs-keyword">as</span> usage_file:
+
+            <span class="hljs-comment"># Use the standard csv module to get</span>
+            <span class="hljs-comment"># a reader object for the CSV file.</span>
+            reader = csv.reader(usage_file)
+
+            <span class="hljs-comment"># The first line of the CSV file contains</span>
+            <span class="hljs-comment"># headings and not fuel usage data, so this</span>
+            <span class="hljs-comment"># statement skips the first line of the file.</span>
+            <span class="hljs-built_in">next</span>(reader)
+
+            <span class="hljs-comment"># Print headers for the three columns.</span>
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"Date,Start,End,Gallons,Miles/Gallon"</span>)
+
+            <span class="hljs-comment"># Process each row in the CSV file.</span>
+            <span class="hljs-keyword">for</span> row_list <span class="hljs-keyword">in</span> reader:
+
+                <span class="hljs-comment"># From the current row of the CSV file, get</span>
+                <span class="hljs-comment"># the date, the starting and ending odometer</span>
+                <span class="hljs-comment"># readings, and the number of gallons used.</span>
+                date = row_list[DATE_INDEX]
+                start_miles = <span class="hljs-built_in">float</span>(row_list[START_MILES_INDEX])
+                end_miles = <span class="hljs-built_in">float</span>(row_list[END_MILES_INDEX])
+                gallons = <span class="hljs-built_in">float</span>(row_list[GALLONS_INDEX])
+
+                <span class="hljs-comment"># Call the miles_per_gallon function.</span>
+                mpg = miles_per_gallon(
+                        start_miles, end_miles, gallons)
+
+                <span class="hljs-comment"># Display the results for one row.</span>
+                mpg = <span class="hljs-built_in">round</span>(mpg, <span class="hljs-number">1</span>)
+                <span class="hljs-built_in">print</span>(date, start_miles, end_miles,
+                        gallons, mpg, sep=<span class="hljs-string">","</span>)
+
+    <em><span class="hljs-keyword">except</span> FileNotFoundError <span class="hljs-keyword">as</span> not_found_err:</em>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Error: cannot open <span class="hljs-subst">{filename}</span>"</span>
+                <span class="hljs-string">" because it doesn't exist."</span>)
+
+    <em><span class="hljs-keyword">except</span> PermissionError <span class="hljs-keyword">as</span> perm_err:</em>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Error: cannot read from <span class="hljs-subst">{filename}</span>"</span>
+                <span class="hljs-string">" because you don't have permission."</span>)
+
+    <em><span class="hljs-keyword">except</span> ZeroDivisionError <span class="hljs-keyword">as</span> zero_div_err:</em>
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Error: <span class="hljs-subst">{filename}</span> contains a"</span>
+                <span class="hljs-string">" zero in the gallons column."</span>)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">miles_per_gallon</span>(<span class="hljs-params">start_miles, end_miles, gallons</span>):</span>
+    <span class="hljs-string">"""Compute and return the average number of miles
+    that a vehicle traveled per gallon of fuel.
+
+    Parameters
+        start_miles: starting odometer reading in miles.
+        end_miles: ending odometer reading in miles.
+        gallons: amount of fuel used in U.S. gallons.
+    Return: miles per gallon
+    """</span>
+    mpg = <span class="hljs-built_in">abs</span>(end_miles - start_miles) / gallons
+    <span class="hljs-keyword">return</span> mpg
+
+
+<span class="hljs-comment"># Call main to start this program.</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div>
+</div>
+
+    <h2 id="validate_input">Validating User Input<span class="copy" title="Copy URL to the clipboard">§</span></h2>
+    <p>To <dfn>validate user input</dfn> means to check user input to
+    ensure it is in the correct format before using that input. The
+    program in example&nbsp;12 validates user input by handling
+    exceptions. Notice in the <code>get_float</code> function, there is
+    a <code>try</code> block at
+    <span class="cross" data-ref="ex12" title="Move mouse over to turn on highlights.
+Click to keep highlights on.">line&nbsp;29</span>. The
+    <code>try</code> block is part of a loop that validates user input
+    in the <code>get_float</code> function. Notice at
+    <span class="cross" data-ref="ex12" title="Move mouse over to turn on highlights.
+Click to keep highlights on.">line&nbsp;44</span> that the
+    <code>except</code> block handles <code>ValueError</code> which is
+    the type of exception that the <code>float</code> function raises
+    when it tries to convert text to a number but the text contains
+    characters that are not numeric.</p>
+
+<div class="example" id="ex12"><pre class="linenums"><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+<span>46</span>
+<span>47</span>
+<span>48</span>
+<span>49</span>
+<span>50</span>
+<span>51</span>
+<span>52</span>
+<span>53</span>
+<span>54</span>
+<span>55</span>
+<span>56</span>
+<span>57</span>
+<span>58</span>
+<span>59</span>
+<span>60</span>
+<span>61</span>
+<span>62</span>
+<span>63</span>
+<span>64</span>
+<span>65</span>
+<span>66</span>
+<span>67</span>
+<span>68</span>
+<span>69</span>
+<span>70</span></pre>
+<div class="code"><pre class="python hljs"><span class="hljs-comment"># Example 12</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+    gender = <span class="hljs-built_in">input</span>(<span class="hljs-string">"Enter your gender (M or F): "</span>)
+
+    weight = get_float(<span class="hljs-string">"Enter your weight in kg: "</span>, <span class="hljs-number">20</span>, <span class="hljs-number">500</span>)
+    height = get_float(<span class="hljs-string">"Enter your height in cm: "</span>, <span class="hljs-number">60</span>, <span class="hljs-number">250</span>)
+    age = get_float(<span class="hljs-string">"Enter your age in years: "</span>, <span class="hljs-number">10</span>, <span class="hljs-number">120</span>)
+
+    bmr = basal_metabolic_rate(gender, weight, height, age)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Your basal metabolic rate is <span class="hljs-subst">{bmr}</span> calories per day."</span>)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_float</span>(<span class="hljs-params">prompt, lower_bound, upper_bound</span>):</span>
+    <span class="hljs-string">"""Get a number from the user, validate that the user
+    entered a number and not some other text, validate that
+    the number is between a lower and upper bound, and then
+    return the number. If the user enters an invalid number,
+    this function will prompt the user repeatedly until the
+    user enters a valid number.
+
+    Parameters
+        prompt: A string to display to the user.
+        lower_bound: The smallest number that the user may enter.
+        upper_bound: The largest number that the user may enter.
+    Return: The number entered by the user.
+    """</span>
+    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+        <em><span class="hljs-keyword">try</span>:</em>
+            text = <span class="hljs-built_in">input</span>(prompt)
+            number = <span class="hljs-built_in">float</span>(text)
+            <span class="hljs-keyword">if</span> number &lt; lower_bound:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">f"<span class="hljs-subst">{number}</span> is too small."</span>)
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">"Please enter another number."</span>)
+            <span class="hljs-keyword">elif</span> number &gt; upper_bound:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">f"<span class="hljs-subst">{number}</span> is too large."</span>)
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">"Please enter another number."</span>)
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-comment"># If the computer gets to this line of code,</span>
+                <span class="hljs-comment"># the user entered a valid number between</span>
+                <span class="hljs-comment"># lower_bound and upper_bound, so exit the loop.</span>
+                <span class="hljs-keyword">break</span>
+
+        <em><span class="hljs-keyword">except</span> ValueError <span class="hljs-keyword">as</span> val_err:</em>
+            <span class="hljs-comment"># The user entered at least one character that is</span>
+            <span class="hljs-comment"># not part of a floating point number, so print a</span>
+            <span class="hljs-comment"># message asking the user to enter a number.</span>
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">f"<span class="hljs-subst">{text}</span> is not a number."</span>)
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">"Please enter a number."</span>)
+
+    <span class="hljs-keyword">return</span> number
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">basal_metabolic_rate</span>(<span class="hljs-params">gender, weight, height, age</span>):</span>
+    <span class="hljs-string">"""Calculate and return a person's basal metabolic rate
+    in calories per day. weight must be in kilograms, height
+    must be in centimeters, and age must be in years.
+    """</span>
+    <span class="hljs-keyword">if</span> gender.upper() == <span class="hljs-string">"F"</span>:
+        bmr = <span class="hljs-number">447.593</span> + <span class="hljs-number">9.247</span> * weight \
+                + <span class="hljs-number">3.098</span> * height - <span class="hljs-number">4.330</span> * age
+    <span class="hljs-keyword">else</span>:
+        bmr = <span class="hljs-number">88.362</span> + <span class="hljs-number">13.397</span> * weight \
+                + <span class="hljs-number">4.799</span> * height - <span class="hljs-number">5.677</span> * age
+    <span class="hljs-keyword">return</span> bmr
+
+
+<span class="hljs-comment"># Call main to start this program.</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    main()</pre><button class="copy" type="button" title="Copy code to the clipboard"><svg viewBox="0 0 512 512"><title>Copy code to the clipboard</title><use href="#svgCopy"></use></svg></button></div>
+</div>
+
+    <h2 id="tutorials">Tutorials<span class="copy" title="Copy URL to the clipboard">§</span></h2>
+    <p>If the concepts above seem vague, these tutorials may clear some
+    confusion for you:</p>
+
+    <ul class="tutorials">
+        <li><div>Python Exceptions: <a href="https://realpython.com/python-exceptions/">An Introduction</a></div></li>
+        <li><div>Official Python <a href="https://docs.python.org/3/tutorial/errors.html">Errors and Exceptions tutorial</a></div></li>
+        <li><div>The Most <a href="https://realpython.com/the-most-diabolical-python-antipattern/">Diabolical Python Antipattern</a></div></li>
+        <li><div>Understanding the <a href="https://realpython.com/python-traceback/">Python Traceback</a></div></li>
+    </ul>
+
+    <p>The official Python <a href="https://docs.python.org/3/library/exceptions.html#bltin-exceptions">built-in
+    exceptions reference</a> contains a list of all the built-in
+    exceptions. It also includes the <a href="https://docs.python.org/3/library/exceptions.html#exception-hierarchy">class
+    hierarchy</a> for the built-in exceptions that is helpful for
+    ordering <code>except</code> blocks from most specific to most
+    general.</p>
+
+    <h2 id="summary">Summary<span class="copy" title="Copy URL to the clipboard">§</span></h2>
+    <p>Errors and exceptional situations sometimes occur while a program
+    is running. When an exceptional situation occurs, a computer will
+    raise an exception. With the <code>try</code> and <code>except</code>
+    keywords, you can write Python code that will handle exceptions.
+    Write normal program code inside a <code>try</code> block and write
+    an <code>except</code> block for each type of exception that you
+    want your program to handle.</p>
+
+    <p>There are many types of exceptions in Python, but there are only
+    seven types that your code will need to handle in
+    CSE&nbsp;111, namely:</p>
+    <ul>
+        <li><div><code>TypeError</code></div></li>
+        <li><div><code>ValueError</code></div></li>
+        <li><div><code>ZeroDivisionError</code></div></li>
+        <li><div><code>IndexError</code></div></li>
+        <li><div><code>KeyError</code></div></li>
+        <li><div><code>FileNotFoundError</code></div></li>
+        <li><div><code>PermissionError</code></div></li>
+    </ul>
+
+    <p>When writing code that writes to or reads from a file, a
+    programmer usally writes <code>except</code> blocks to handle
+    <code>FileNotFoundError</code> and <code>PermissionError</code>.
+    Also, when writing code that gets input from a user, a programmer
+    usually writes <code>try</code> and <code>except</code> blocks to
+    help validate the user’s input.</p>
+</article>
+
+
+<svg class="cache"><svg xmlns="http://www.w3.org/2000/svg"><style>.stroke{stroke-width:8;stroke-linecap:round;stroke-linejoin:round;fill:none}.fill{stroke:none;fill:white}</style><defs><g id="svgBYUILogo" viewBox="0 0 88.48 52.39"><path d="m2.45 2.02v21.07c0 .68 0 .92-.45 1.23a4.79 4.79 0 0 1-1.73.47c-.08 0-.06.32 0 .32h17c7.18 0 10.21-2.86 10.21-7.3 0-3.3-1.53-5.31-4.57-6.06a.05.05 0 0 1 0-.1c1.93-.6 3.72-2 3.72-5.43 0-4.64-3.15-6.21-10-6.21h-16.36c-.08 0-.09.3 0 .32a4.77 4.77 0 0 1 1.74.48c.49.3.44.53.44 1.22m8 17.68v-5a3.52 3.52 0 0 0 0-.6 4.18 4.18 0 0 0 .6.05h2.79c2.22 0 4.94 0 4.94 3.08 0 2.27-2 3.08-4.57 3.08h-3.16a4.92 4.92 0 0 0-.59 0 5.44 5.44 0 0 0 0-.6m0-10v-4.42a3.68 3.68 0 0 0 0-.6 4.18 4.18 0 0 0 .6.05h3.3c2.51 0 4 .39 4 2.67 0 1.48-.91 2.81-3.88 2.81h-3.4a4.92 4.92 0 0 0-.59 0 4.92 4.92 0 0 0 0-.59"></path><path d="m48 25.11c.09 0 .1-.3 0-.32a4.79 4.79 0 0 1-1.74-.47c-.48-.31-.45-.55-.45-1.23v-8l8.7-12.9a6.09 6.09 0 0 1 1.17-1.41 3 3 0 0 1 .32-.22 1.65 1.65 0 0 1 .94-.24c.08 0 .1-.31 0-.31h-11.68c-.1 0-.08.31 0 .32.58 0 1.28 0 1.16.83l-5.01 7.96-5.02-7.96c-.08-.99.59-.83 1.15-.83.09 0 .11-.32 0-.32h-12.3c-.08 0-.07.28 0 .31a3.24 3.24 0 0 1 1.43.32 1.41 1.41 0 0 1 .31.21 5.52 5.52 0 0 1 1.11 1.34l8.67 12.85v8.05c0 .68.05.92-.44 1.23a4.79 4.79 0 0 1-1.74.47c-.08 0-.06.32 0 .32z"></path><path d="m86.1 2.02c0-.69 0-.93.44-1.23a4.79 4.79 0 0 1 1.74-.47c.08 0 .07-.31 0-.31h-12.57c-.08 0-.1.3 0 .32a3.63 3.63 0 0 1 1.64.47c.48.3.44.55.44 1.23v12.66c0 2.89-1.66 5.11-4.94 5.11s-4.94-2.22-4.94-5.11v-12.67c0-.68 0-.93.45-1.23a4 4 0 0 1 1.64-.47c.08 0 .07-.31 0-.31h-11.87c-.09 0-.07.29 0 .31a1.53 1.53 0 0 1 1 .28c.39.33.46.73.46 1.42v12.45c0 6 3.28 11.09 13.24 11.09s13.25-5.1 13.25-11.09z"></path><path d="m88.02 31.15h-87.67a.36.36 0 0 1 0-.72h87.67a.36.36 0 0 1 0 .72"></path><path d="m.2 52.3c-.07 0-.07-.29 0-.32a5.59 5.59 0 0 0 1.88-.41c.28-.17.51-.59.51-5.38v-3.55c0-4.8-.23-5.24-.51-5.39a5.59 5.59 0 0 0-1.88-.41c-.1 0-.1-.32 0-.32h6.58c.07 0 .1.29 0 .32a5.49 5.49 0 0 0-1.85.41c-.31.15-.53.59-.53 5.39v3.55c0 4.79.22 5.21.53 5.38a5.49 5.49 0 0 0 1.85.41c.13 0 .1.32 0 .32z"></path><path d="m18.56 37.3c-1.46 0-2.07.19-2.24.41s-.37 1.27-.37 4.82v3.63c0 3.12.23 4.34.54 4.68s1 .63 2.27.63c4.76 0 7-2.27 7-6.85a7 7 0 0 0-7.16-7.32m6.87 12.56c-1.68 1.68-3.53 2.41-6.65 2.41-1.07 0-2.8-.05-3.7-.05s-2 .05-3.09.05c-.08 0-.1-.29 0-.31a3.87 3.87 0 0 0 1.65-.42c.32-.17.52-.58.52-5.38v-3.56c0-4.79-.2-5.23-.52-5.38a3.92 3.92 0 0 0-1.65-.41c-.12 0-.1-.32 0-.32 1.07 0 2.19.06 3.09.06s3.14-.06 4.23-.06c4.9 0 8.43 3.29 8.43 7.69a8.16 8.16 0 0 1-2.31 5.68"></path><path d="m38.3 39.47-2.09 5.83h4.31zm3 12.78c-.07 0-.1-.29 0-.31.75-.08 1.22-.22 1.22-.59s-.32-1.51-1.71-5h-5c-1.14 3.13-1.41 4.33-1.41 4.84s.34.66 1.39.76c.09 0 .07.31 0 .31h-5c-.07 0-.13-.29 0-.31a3.18 3.18 0 0 0 1.53-.47c.24-.19.68-.53 2.44-5.33l1.29-3.55c.75-2.05 1.55-4.17 2.16-6.06.06-.18.78-.18.83 0 .74 2.11 1.37 3.84 2.22 6.06l1.38 3.55c1.9 4.8 2.22 5.16 2.56 5.38a2.91 2.91 0 0 0 1.47.42c.09 0 .06.31 0 .31z"></path><path d="m61.94 52.3c-.09 0-.09-.29 0-.31a3.87 3.87 0 0 0 1.65-.42c.3-.17.52-.58.52-5.38v-1.51h-9.17v1.51c0 4.8.22 5.21.51 5.38a3.94 3.94 0 0 0 1.66.42c.12 0 .12.31.05.31h-6.22c-.08 0-.1-.29 0-.31a4 4 0 0 0 1.65-.42c.32-.17.51-.58.51-5.38v-3.55c0-4.8-.19-5.24-.51-5.39a4 4 0 0 0-1.65-.41c-.12 0-.1-.32 0-.32h6.18c.07 0 .07.3-.05.32a4 4 0 0 0-1.66.41c-.29.15-.51.59-.51 5.39v1.14h9.21v-1.14c0-4.8-.22-5.24-.52-5.39a3.92 3.92 0 0 0-1.65-.41c-.12 0-.12-.32 0-.32h6.17c.09 0 .09.3 0 .32a4.09 4.09 0 0 0-1.66.41c-.29.15-.51.59-.51 5.39v3.55c0 4.8.22 5.21.51 5.38a4 4 0 0 0 1.66.42c.12 0 .12.31 0 .31z"></path><path d="m79.82 37.23c-4.36 0-5.8 3.48-5.8 6.62 0 4 2.51 7.64 6.41 7.64 4.33 0 5.77-3.47 5.77-6.62 0-4-2.48-7.64-6.38-7.64m.12 15.17a7.7 7.7 0 0 1-7.94-7.84 8.22 8.22 0 0 1 8.28-8.23 7.68 7.68 0 0 1 7.94 7.83 8.21 8.21 0 0 1-8.28 8.24"></path></g><symbol id="svgBars" viewBox="0 0 56 64"><path class="stroke" d="M4,12H52M4,32H52M4,52H52"></path></symbol><symbol id="svgClose" viewBox="0 0 56 64"><path class="stroke" d="M12,16L44,48M12,48L44,16"></path></symbol><symbol id="svgLeft" viewBox="0 0 64 64"><path class="stroke" d="M56,32H8M28,12L8,32L28,52"></path></symbol><symbol id="svgList" viewBox="0 0 64 64"><rect x="0" y="7" width="10" height="10" rx="2"></rect><rect x="0" y="27" width="10" height="10" rx="2"></rect><rect x="0" y="47" width="10" height="10" rx="2"></rect><path class="stroke" d="M24,12H60M24,32H60M24,52H60"></path></symbol><symbol id="svgMagnify" viewBox="0 0 64 64"><path class="stroke" d="M48,26A16,16 0 1 0 4,26A16,16 0 1 0 48,26M44,44L60,60"></path></symbol><symbol id="svgMoon" viewBox="0 0 64 64"><path class="fill" d="M38.4,6A26,26 0 1 0 54.4,50A26,26 0 0 1 38.4,6"></path></symbol><symbol id="svgQuestion" viewBox="0 0 64 64"><path class="stroke" d="M16,18A16,12 0 0 1 48,18A8,12 0 0 1 42,32C40,33 36,34.5 34,35.5C30,37.25 30,37.5 30,43"></path><circle class="fill" cx="30" cy="57" r="5"></circle></symbol><symbol id="svgRight" viewBox="0 0 64 64"><path class="stroke" d="M8,32H56M36,12L56,32L36,52"></path></symbol><symbol id="svgSun" viewBox="0 0 64 64" class="fill"><circle cx="32" cy="32" r="16"></circle><path d="M51.32,26.82A20,20 0 0 151.32,37.18L64,32ZM49.32,42A20,20 0 0 142,49.32L54.63,54.63ZM37.18,51.32A20,20 0 0 126.82,51.32L32,64ZM22,49.32A20,20 0 0 114.68,42L9.37,54.63ZM12.68,37.18A20,20 0 0 112.68,26.82L0,32ZM14.68,22A20,20 0 0 122,14.68L9.37,9.37ZM26.82,12.68A20,20 0 0 137.18,12.68L32,0ZM42,14.68A20,20 0 0 149.32,22L54.63,9.37Z"></path></symbol><symbol id="svgUp" viewBox="0 0 48 64"><path class="stroke" d="M24,60V4M8,20L24,4L40,20"></path></symbol><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><symbol id="svgCopy" viewBox="0 0 512 512"><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"></path></symbol><symbol id="svgFilePDF" viewBox="0 0 384 512"><path d="M320 464C328.8 464 336 456.8 336 448V416H384V448C384 483.3 355.3 512 320 512H64C28.65 512 0 483.3 0 448V416H48V448C48 456.8 55.16 464 64 464H320zM256 160C238.3 160 224 145.7 224 128V48H64C55.16 48 48 55.16 48 64V192H0V64C0 28.65 28.65 0 64 0H229.5C246.5 0 262.7 6.743 274.7 18.75L365.3 109.3C377.3 121.3 384 137.5 384 154.5V192H336V160H256zM88 224C118.9 224 144 249.1 144 280C144 310.9 118.9 336 88 336H80V368C80 376.8 72.84 384 64 384C55.16 384 48 376.8 48 368V240C48 231.2 55.16 224 64 224H88zM112 280C112 266.7 101.3 256 88 256H80V304H88C101.3 304 112 293.3 112 280zM160 240C160 231.2 167.2 224 176 224H200C226.5 224 248 245.5 248 272V336C248 362.5 226.5 384 200 384H176C167.2 384 160 376.8 160 368V240zM192 352H200C208.8 352 216 344.8 216 336V272C216 263.2 208.8 256 200 256H192V352zM336 224C344.8 224 352 231.2 352 240C352 248.8 344.8 256 336 256H304V288H336C344.8 288 352 295.2 352 304C352 312.8 344.8 320 336 320H304V368C304 376.8 296.8 384 288 384C279.2 384 272 376.8 272 368V240C272 231.2 279.2 224 288 224H336z"></path></symbol><symbol id="svgFileZip" viewBox="0 0 384 512"><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0L64-.0001c-35.35 0-64 28.65-64 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h48V64h64V48.13h48.01L224 128c0 17.67 14.33 32 32 32h79.1V448zM176 96h-64v32h64V96zM176 160h-64v32h64V160zM176 224h-64l-30.56 116.5C73.51 379.5 103.7 416 144.3 416c40.26 0 70.45-36.3 62.68-75.15L176 224zM160 368H128c-8.836 0-16-7.164-16-16s7.164-16 16-16h32c8.836 0 16 7.164 16 16S168.8 368 160 368z"></path></symbol></defs></svg></svg><footer><div>Last modified 2023-02-20<br>Copyright © 2020, Brigham Young University–Idaho. All rights reserved.</div><button class="up" type="button" title="Scroll to the top of this document"><svg viewBox="0 0 48 64"><title>Scroll to the top of this document</title><use href="#svgUp"></use></svg></button></footer></body></html>
