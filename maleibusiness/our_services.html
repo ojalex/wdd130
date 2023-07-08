@@ -7,6 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MALEi Business | Services</title>
     <link type="text/css" rel="stylesheet" href="styles/contactus.css" />
+    <style>
+        .accordion {
+          background-color: #a00df4;
+          color: white;
+          cursor: pointer;
+          padding: 18px;
+          width: 100%;
+          border: none;
+          text-align: left;
+          outline: none;
+          font-size: 15px;
+          transition: 0.4s;
+        }
+        
+        .active, .accordion:hover {
+          background-color: rgb(75, 119, 176); 
+        }
+        
+        .panel {
+          padding: 0 18px;
+          display: none;
+          background-color: white;
+          overflow: hidden;
+        }
+        </style>
 </head>
 
 <!-- Body of the website-->
@@ -29,7 +54,7 @@
        
         <section class="others">
             <h3>We offer a vast variety of goods and services, as listed below:</h3>
-                <h3>Perfume (Cologne) Brands</h3>
+            <h3>Perfume (Cologne) Brands</h3>
                 <ol>
                     <li>Polo Sport</li>
                     <li>Dunhill Red</li>
@@ -54,8 +79,8 @@
                     <li>Fantasy Sunset</li>
                     <li>Escada Taj</li>
                 </ol>
-
-                <h3>Internet Services</h3>
+                </div>
+               <h3>Internet Services</h3>
                 <ol>
                     <li>KRA Tax Return</li>
                     <li>KRA Pin Certificate Generation</li>
@@ -87,21 +112,28 @@
                     <li>Article writing</li>
                     <li>Academic Writing etc</li>
                 </ol>
-                <h3>Payment Methods:</h3>
+                </div>
+                <button class="accordion"><h3>Payment Methods:</h3></button>
+                <div class="panel">
                 <ul>
                     <li>PayPal: jumaalex448@gmail.com</li>
                     <li>M-Pesa: Buy Goods Till No. 5659579</li>
                     <li>Western Union (request)</li>
                     <li>Bank Transfer (Request)</li>
                 </ul>
-                
-                <h3>Terms of Service</h3>
+                </div>
+                <button class="accordion"><h3>Terms of Service</h3></button>
+                <div class="panel">
                     <p>***** The customer must pay 50% of the cost of service before 
                         starting the task (refundable if the client is not satisfied), 
                         after which the remaining 50% will follow on completion and 
                         satisfaction of the assigned task. This is applicable to first-time 
-                        clients. *****</p>
+                        clients. *****
+                    </p>
+                </div>
         </section>
+
+        
     </main>
     <footer>
         <p>MALEi Business &copy; 2023 - OJ Alex</p>
@@ -120,6 +152,21 @@
             </a>
         </div>
     </footer>
-    
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+              panel.style.display = "none";
+            } else {
+              panel.style.display = "block";
+            }
+          });
+        }
+        </script>
 </body>
 </html>
