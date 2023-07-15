@@ -3,6 +3,9 @@
     margin-top: 10px;
 
 } 
+h1, h2, h3{
+    color: #a00df4;
+}
 .logo {
     width: 80px;
 }

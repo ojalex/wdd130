@@ -43,7 +43,7 @@ body{
 
   /* To see the limits of the form */
   padding: 1em;
-  border: 2px solid #090909;
+  /*border: 2px solid #090909;*/
   border-radius: 1em;
 }
 
@@ -167,7 +167,28 @@ footer p a:hover {
 footer .social img {
     padding-top: 15px;
 } 
+h1, h2, h3{
+    color: #a00df4;
+}
+.book, .join{
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 15px 30px;
+    margin-top: 50px;
+    border-radius: 5px;
+}
+.book:hover, .join:hover{
+    background-color: rgb(255, 247, 0);
+    color: black;
+}
+.button-box{
+    text-align: center;
+    padding: 10px;
+}
 @media screen and (max-width: 900px) {
+   
     #hero, .home-grid {
         display: block;
         height: auto;
