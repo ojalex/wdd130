@@ -112,20 +112,24 @@ button {
     /* make this element invisible until we are ready for it */
     display: none;      
 }
-#float-right {
+.float-right {
     float: right;
     padding: 20px;
     width: 60%;
     background-color: white;
     height:80%; /* only for demonstration, should be removed */
   }
-#float-left {
+.float-left {
     float: left;
     width: 30%;
     height:100%; /* only for demonstration, should be removed */
     background: white;
     padding: 20px;
     
+  }
+  .service-img{
+    width: 300px;
+    height: 300px;
   }
   /* Clear floats after the columns */
 .others::after {
@@ -140,6 +144,10 @@ button {
 }
 .moveDown {
     margin-top: 3em;
+}
+.team{
+    width: 250px; 
+    height: 250px;
 }
 footer{
     background-color: #030303;

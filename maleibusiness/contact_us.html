@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MALEi Business | Contact Us</title>
-    <link type="text/css" rel="stylesheet" href="styles/contactus.css" />
+    <link type="text/css" rel="stylesheet" href="styles/childpage-style.css">
 </head>
 <body>
     <header>
@@ -22,23 +22,23 @@
     </header>
     <main>
         <br><br>
-        <section id="float-left">
-            <img src="images/oj.jpeg" alt="OJ Alex" width="40%" height="40%">
+        <div class="float-left">
+            <img src="images/oj.jpeg" alt="OJ Alex" class="service-img">
             <br>
             <p><b>Alex Juma</b></p>
             <p>Managing Director MALEI BUSINESS</p>
 
-        </section>
-        
+        </div>
+        <div id="feedback"></div>
         <form action="/my-handling-form-page" method="post">
             <div>
               <label for="name">Name:</label>
-              <input type="text" id="name" name="user_name" />
+              <input type="text" id="name" name="user_name">
             </div>
           
             <div>
               <label for="mail">Email:</label>
-              <input type="email" id="mail" name="user_email" />
+              <input type="email" id="mail" name="user_email">
             </div>
           
             <div>
@@ -50,8 +50,6 @@
               <button type="submit">Send your message</button>
             </div>
           </form>
-          
-        
     </main>
     <footer>
         <p>MALEi Business &copy; 2023 - OJ Alex</p>
@@ -70,8 +68,7 @@
             </a>
         </div>
     </footer>
-    
-</body>
+  
 <script>
     // get the feedback div element so we can do something with it.
     const feedbackElement = document.getElementById('feedback');
@@ -89,4 +86,6 @@
         document.body.classList.toggle('moveDown');
     });
 </script>
+</body>
+
 </html>
